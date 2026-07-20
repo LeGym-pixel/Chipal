@@ -26,12 +26,9 @@ jobs:
 
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
-      
-      - name: Install Android NDK
-      run: |
-        echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager \
-          --install "ndk;27.0.1207793"
-        echo "ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk/27.0.1207793" » $GITHUB_ENV
+
+    - name: Install Android NDK
+      run: echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;27.0.1207793" && echo "ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk/27.0.1207793" » $GITHUB_ENV
 
     - name: Install gomobile
       run: |
@@ -41,8 +38,6 @@ jobs:
 
     - name: Build libv2ray.aar
       working-directory: PeladuVPN/SVPN
-      env:
-        ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.0.1207793
       run: |
         gomobile init
         gomobile bind -target=android -androidapi 23 -o app/libs/libv2ray.aar
