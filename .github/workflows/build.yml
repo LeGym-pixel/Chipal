@@ -41,23 +41,23 @@ jobs:
         # Переходим в проект
         cd "$PROJECT_ROOT"
         
-        # Скачиваем и распаковываем Gradle 8.7 напрямую, минуя системные команды wrapper
-        wget -q https://services.gradle.org/distributions/gradle-8.7-bin.zip
-        unzip -q gradle-8.7-bin.zip
-        GRADLE_BIN="$(pwd)/gradle-8.7/bin/gradle"
+        # Скачиваем и распаковываем Gradle 8.9 (совместим с текущим AGP)
+        wget -q https://services.gradle.org/distributions/gradle-8.9-bin.zip
+        unzip -q gradle-8.9-bin.zip
+        GRADLE_BIN="$(pwd)/gradle-8.9/bin/gradle"
         
-        # Настраиваем wrapper свойства
+        # Настраиваем wrapper свойства на версию 8.9
         mkdir -p gradle/wrapper
         echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
         echo "distributionPath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
-        echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.7-bin.zip" » gradle/wrapper/gradle-wrapper.properties
+        echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.9-bin.zip" » gradle/wrapper/gradle-wrapper.properties
         echo "networkTimeout=10000" » gradle/wrapper/gradle-wrapper.properties
         echo "validateDistributionUrl=true" » gradle/wrapper/gradle-wrapper.properties
         echo "zipStoreBase=GRADLE_USER_HOME" » gradle/wrapper/gradle-wrapper.properties
         echo "zipStorePath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
         
-        # Генерируем gradlew с помощью скачанного Gradle 8.7
-        "$GRADLE_BIN" wrapper --gradle-version 8.7
+        # Генерируем gradlew с помощью скачанного Gradle 8.9
+        "$GRADLE_BIN" wrapper --gradle-version 8.9
         
         chmod +x gradlew
         
