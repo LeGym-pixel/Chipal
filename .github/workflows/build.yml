@@ -13,11 +13,6 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: '1.22'
-
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
@@ -27,32 +22,13 @@ jobs:
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Install Android NDK
-      run: |
-        curl -LO https://dl.google.com/android/repository/android-ndk-r27-linux.zip
-        unzip -q android-ndk-r27-linux.zip
-        sudo mv android-ndk-r27 /usr/local/lib/android/sdk/ndk/27.0.1207793
-        echo "ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk/27.0.1207793" » $GITHUB_ENV
-
-    - name: Install gomobile
-      run: |
-        go install golang.org/x/mobile/cmd/gomobile@latest
-        go install golang.org/x/mobile/cmd/gobind@latest
-        echo "$(go env GOPATH)/bin" » "$GITHUB_PATH"
-
     - name: Create libs dir if not exists
       run: mkdir -p PeladuVPN/SVPN/app/libs
 
-    - name: Clone Xray-core and build libv2ray.aar
+    - name: Download prebuilt libv2ray.aar
       run: |
-        git clone https://github.com/XTLS/Xray-core.git xray-source
-        cd xray-source
-        go get -tool golang.org/x/mobile/cmd/gobind
-        go get golang.org/x/mobile
-        go mod tidy
-        gomobile init
-        gomobile bind -target=android -androidapi 21 -o ../PeladuVPN/SVPN/app/libs/libv2ray.aar .
-        cd ..
+        curl -L -o PeladuVPN/SVPN/app/libs/libv2ray.aar https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
+        curl -L -o PeladuVPN/SVPN/app/libs/libv2ray.aar https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
 
     - name: Build Debug APK
       working-directory: PeladuVPN/SVPN
