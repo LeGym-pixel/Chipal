@@ -28,7 +28,10 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Install Android NDK
-      run: sdkmanager --install "ndk;27.0.1207793"
+      uses: nttld/setup-ndk@v3
+      with:
+        ndk-version: 27.0.1207793
+        add-to-path: true
 
     - name: Install gomobile
       run: |
