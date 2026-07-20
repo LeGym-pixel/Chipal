@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">PeladuVPN</string>
+
+    <string name="title_home">SVPN</string>
+    <string name="title_add_server">Server goş</string>
+    <string name="title_settings">Sazlamalar</string>
+    <string name="title_tunnel_settings">Tunnel sazlamalary</string>
+
+    <string name="servers_header">Serwerler</string>
+    <string name="no_servers">Serwer goşulmady.\nAçar girizmek ýa-da faýl import etmek üçin + basyň.</string>
+    <string name="cd_tunnel_settings">Tunnel sazlamalary</string>
+    <string name="cd_delete">Poz</string>
+    <string name="btn_connect">Birikdir</string>
+    <string name="btn_disconnect">Aýyr</string>
+
+    <string name="field_server_name">Serweriň ady</string>
+    <string name="field_paste_key">Açary ýa-da .conf mazmunyny giriziň</string>
+    <string name="btn_import_file">Konfigurasiýa faýlyny import et</string>
+    <string name="btn_cancel">Ýatyr</string>
+    <string name="btn_save">Sakla</string>
+
+    <string name="error_title">Ýalňyşlyk</string>
+    <string name="error_select_server_first">Ilki serweri saýlaň</string>
+    <string name="error_connect_failed">Birikdirip bolmady</string>
+    <string name="error_read_file">Faýly okap bolmady: %1$s</string>
+
+    <string name="settings_language">Programma dili</string>
+    <string name="settings_language_note">Dil üýtgemesi derrew güýje girýär.</string>
+
+    <string name="tunnel_section_basic">Esasy</string>
+    <string name="tunnel_section_obfuscation">AmneziaWG maskirlemesi</string>
+    <string name="field_mtu">MTU</string>
+    <string name="field_dns">DNS</string>
+    <string name="field_allowed_ips">Allowed IPs</string>
+    <string name="field_keepalive">Persistent Keepalive (sek)</string>
+
+    <string name="btn_news">Habarlar</string>
+    <string name="warning_unofficial_config">Bu PeladuVPN-iň resmi bolmadyk konfigurasiýasy. Adaty VPN profili hökmünde import edildi.</string>
+
+    <string name="hex_back">yza</string>
+    <string name="hex_settings">sazlamalar</string>
+    <string name="hex_news">habarlar</string>
+    <string name="hex_server_list">server\nsanawy</string>
+    <string name="hex_save">sakla</string>
+    <string name="enter_key_title">Açary giriziň</string>
+    <string name="placeholder_paste_key">Açary giriziň</string>
+    <string name="import_file_link">Faýly import et</string>
+    <string name="error_no_server_in_list">Ilki server sanawyndan serweri saýlaň</string>
+    <string name="error_link_parse">Salgyny derňemekde ýalňyşlyk</string>
+    <string name="error_config_parse_generic">Konfigurasiýany derňemekde ýalňyşlyk</string>
+    <string name="notification_connected">PeladuVPN işleýär.</string>
+    <string name="settings_button_design">Düwme dizaýny</string>
+    <string name="btn_select_server">Serweri saýla</string>
+    <string name="status_disconnected">ölçürildi</string>
+    <string name="status_connecting">birikdirilýär...</string>
+    <string name="status_almost">az galdy...</string>
+    <string name="status_connected">birikdirildi!</string>
+</resources>
