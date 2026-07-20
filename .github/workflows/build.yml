@@ -38,16 +38,14 @@ jobs:
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
         
-        # Переходим в проект и жестко прописываем Gradle 8.7 через wrapper
+        # Переходим в корневую папку приложения и настраиваем Gradle 8.7
         cd "$PROJECT_ROOT"
-        gradle wrapper --gradle-version 8.7 --distribution-type bin
         
-        # На всякий случай проверяем и исправляем gradle-wrapper.properties
-        WRAPPER_PROPS="gradle/wrapper/gradle-wrapper.properties"
-        if [ -f "$WRAPPER_PROPS" ]; then
-          sed -i 's/gradle-.*-bin.zip/gradle-8.7-bin.zip/g' "$WRAPPER_PROPS"
-          sed -i 's/gradle-.*-all.zip/gradle-8.7-bin.zip/g' "$WRAPPER_PROPS"
-        fi
+        # Удаляем старый оберточник, если есть, чтобы исключить конфликты
+        rm -rf gradle gradlew gradlew.bat
+        
+        # Генерируем свежий wrapper на базе Gradle 8.7
+        gradle wrapper --gradle-version 8.7 --distribution-type bin
         
         chmod +x gradlew
         echo "PROJECT_PATH=$PROJECT_ROOT" » $GITHUB_ENV
