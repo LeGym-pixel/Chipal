@@ -43,6 +43,8 @@ jobs:
     - name: Build libv2ray.aar
       working-directory: PeladuVPN/SVPN
       run: |
+        go get -tool golang.org/x/mobile/cmd/gobind
+        go get -tool golang.org/x/mobile/cmd/gomobile
         gomobile init
         gomobile bind -target=android -androidapi 23 -o app/libs/libv2ray.aar
 
