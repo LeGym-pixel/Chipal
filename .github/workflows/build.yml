@@ -24,10 +24,6 @@ jobs:
 
     - name: Prepare Project and Libs
       run: |
-        # Посмотрим структуру папок, чтобы понять, где мы находимся
-        ls -la
-        
-        # Находим папку, где лежит build.gradle или папка app
         APP_DIR=$(find . -name "app" -type d | head -n 1)
         if [ -z "$APP_DIR" ]; then
           echo "Error: 'app' directory not found in repository!"
@@ -42,11 +38,9 @@ jobs:
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
         
-        # Генерируем обертку gradlew, если её нет
+        # Фиксируем совместимую версию Gradle 8.7
         cd "$PROJECT_ROOT"
-        if [ ! -f "gradlew" ]; then
-          gradle wrapper --gradle-version 8.5
-        fi
+        gradle wrapper --gradle-version 8.7
         
         chmod +x gradlew
         echo "PROJECT_PATH=$PROJECT_ROOT" » $GITHUB_ENV
