@@ -42,25 +42,25 @@ jobs:
         cd "$PROJECT_ROOT"
         
         # Чистим старые следы
-        rm -rf gradle/wrapper/gradle-wrapper.properties gradle-7.* .gradle
+        rm -rf gradle/wrapper/gradle-wrapper.properties gradle-7.* gradle-8.* .gradle
         
-        # Скачиваем и распаковываем Gradle 7.6.3
-        wget -q https://services.gradle.org/distributions/gradle-7.6.3-bin.zip
-        unzip -q gradle-7.6.3-bin.zip
-        GRADLE_BIN="$(pwd)/gradle-7.6.3/bin/gradle"
+        # Скачиваем и распаковываем Gradle 8.4
+        wget -q https://services.gradle.org/distributions/gradle-8.4-bin.zip
+        unzip -q gradle-8.4-bin.zip
+        GRADLE_BIN="$(pwd)/gradle-8.4/bin/gradle"
         
-        # Настраиваем wrapper свойства на 7.6.3
+        # Настраиваем wrapper свойства на 8.4
         mkdir -p gradle/wrapper
         echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
         echo "distributionPath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
-        echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-7.6.3-bin.zip" » gradle/wrapper/gradle-wrapper.properties
+        echo "distributionUrl=https\\://services.gradle.org/distributions/gradle-8.4-bin.zip" » gradle/wrapper/gradle-wrapper.properties
         echo "networkTimeout=10000" » gradle/wrapper/gradle-wrapper.properties
         echo "validateDistributionUrl=true" » gradle/wrapper/gradle-wrapper.properties
         echo "zipStoreBase=GRADLE_USER_HOME" » gradle/wrapper/gradle-wrapper.properties
         echo "zipStorePath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
         
         # Генерируем gradlew
-        "$GRADLE_BIN" wrapper --gradle-version 7.6.3
+        "$GRADLE_BIN" wrapper --gradle-version 8.4
         
         chmod +x gradlew
         
