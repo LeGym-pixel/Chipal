@@ -40,18 +40,18 @@ jobs:
         go install golang.org/x/mobile/cmd/gobind@latest
         echo "$(go env GOPATH)/bin" » "$GITHUB_PATH"
 
+    - name: Create libs dir if not exists
+      run: mkdir -p PeladuVPN/SVPN/app/libs
+
     - name: Clone Xray-core and build libv2ray.aar
       run: |
         git clone https://github.com/XTLS/Xray-core.git xray-source
         cd xray-source
+        go get golang.org/x/mobile
         go mod tidy
         gomobile init
-        # Сборка aar библиотеки для Android
         gomobile bind -target=android -androidapi 21 -o ../PeladuVPN/SVPN/app/libs/libv2ray.aar .
         cd ..
-
-    - name: Create libs dir if not exists
-      run: mkdir -p PeladuVPN/SVPN/app/libs
 
     - name: Build Debug APK
       working-directory: PeladuVPN/SVPN
