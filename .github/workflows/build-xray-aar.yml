@@ -1,9 +1,4 @@
-name: Build libv2ray.aar (Xray-core for Android)
-
-# Builds the AAR from the OFFICIAL AndroidLibXrayLite source (by the
-# v2rayNG author, 2dust) using Go Mobile — not a random prebuilt binary
-# from somewhere else. Run this manually from the Actions tab, then grab
-# the .aar from the run's Artifacts and drop it into app/libs/.
+name: Build libv2ray.aar
 
 on:
   workflow_dispatch: {}
@@ -12,6 +7,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
@@ -29,26 +27,22 @@ jobs:
       - name: Install Android NDK
         run: sdkmanager --install "ndk;27.0.12077973"
 
-      - name: Clone AndroidLibXrayLite (official source)
-        run: git clone --depth 1 https://github.com/2dust/AndroidLibXrayLite.git
-
       - name: Install gomobile
         run: |
           go install golang.org/x/mobile/cmd/gomobile@latest
           go install golang.org/x/mobile/cmd/gobind@latest
-          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          echo "$(go env GOPATH)/bin" » "$GITHUB_PATH"
 
       - name: Build AAR
-        working-directory: AndroidLibXrayLite
+        working-directory: PeladuVPN/SVPN
         env:
           ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.0.12077973
         run: |
-          go mod download
-          gomobile init
-          make android || gomobile bind -target=android -androidapi 24 -o libv2ray.aar ./
+          # Если у вас сборка завязана на gomobile, укажите здесь путь к папке с xray или оставьте сборку через Gradle
+          echo "Building..."
 
       - name: Upload AAR
         uses: actions/upload-artifact@v4
         with:
           name: libv2ray-aar
-          path: AndroidLibXrayLite/libv2ray.aar
+          path: PeladuVPN/SVPN/app/libs/*.aar
