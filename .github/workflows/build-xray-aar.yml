@@ -6,43 +6,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.23'
+    - name: Set up Go
+      uses: actions/setup-go@v5
+      with:
+        go-version: '1.23'
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: '17'
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
+    - name: Set up Android SDK
+      uses: android-actions/setup-android@v3
 
-      - name: Install Android NDK
-        run: sdkmanager --install "ndk;27.0.12077973"
+    - name: Install Android NDK
+      run: sdkmanager --install "ndk;27.0.1207793"
 
-      - name: Install gomobile
-        run: |
-          go install golang.org/x/mobile/cmd/gomobile@latest
-          go install golang.org/x/mobile/cmd/gobind@latest
-          echo "$(go env GOPATH)/bin" » "$GITHUB_PATH"
+    - name: Install gomobile
+      run: |
+        go install golang.org/x/mobile/cmd/gomobile@latest
+        go install golang.org/x/mobile/cmd/gobind@latest
+        echo "$(go env GOPATH)/bin" » "$GITHUB_PATH"
 
-      - name: Build AAR
-        working-directory: PeladuVPN/SVPN
-        env:
-          ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.0.12077973
-        run: |
-          # Если у вас сборка завязана на gomobile, укажите здесь путь к папке с xray или оставьте сборку через Gradle
-          echo "Building..."
+    - name: Build AAR
+      working-directory: PeladuVPN/SVPN
+      env:
+        ANDROID_NDK_HOME: /usr/local/lib/android/sdk/ndk/27.0.1207793
+      run: |
+        gomobile init
+        gomobile bind -target=android -androidapi 23 -o app/libs/libv2ray.aar
 
-      - name: Upload AAR
-        uses: actions/upload-artifact@v4
-        with:
-          name: libv2ray-aar
-          path: PeladuVPN/SVPN/app/libs/*.aar
+    - name: Upload AAR
+      uses: actions/upload-artifact@v4
+      with:
+        name: libv2ray-aar
+        path: PeladuVPN/SVPN/app/libs/*.aar
