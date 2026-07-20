@@ -22,20 +22,31 @@ jobs:
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Create libs dir if not exists
-      run: mkdir -p PeladuVPN/SVPN/app/libs
-
-    - name: Download prebuilt libv2ray.aar
+    - name: Find project path and prepare libs
       run: |
-        curl -L -o PeladuVPN/SVPN/app/libs/libv2ray.aar https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
-        curl -L -o PeladuVPN/SVPN/app/libs/libv2ray.aar https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
+        # Ищем, где находится файл gradlew в репозитории
+        GRADLE_PATH=$(find . -name "gradlew" -maxdepth 4 | head -n 1)
+        if [ -z "$GRADLE_PATH" ]; then
+          echo "Error: gradlew not found!"
+          exit 1
+        fi
+        PROJECT_DIR=$(dirname "$GRADLE_PATH")
+        echo "PROJECT_DIR=$PROJECT_DIR" » $GITHUB_ENV
+        echo "Found project at: $PROJECT_DIR"
+        
+        # Создаем папку libs и скачиваем туда libv2ray.aar
+        mkdir -p "$PROJECT_DIR/app/libs"
+        curl -L -o "$PROJECT_DIR/app/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
+        curl -L -o "$PROJECT_DIR/app/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
 
     - name: Build Debug APK
-      working-directory: PeladuVPN/SVPN
-      run: ./gradlew assembleDebug
+      run: |
+        cd ${{ env.PROJECT_DIR }}
+        chmod +x gradlew
+        ./gradlew assembleDebug
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: PeladuVPN/SVPN/app/build/outputs/apk/debug/app-debug.apk
+        path: "**/build/outputs/apk/debug/app-debug.apk"
