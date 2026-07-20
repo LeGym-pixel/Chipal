@@ -28,7 +28,11 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Install Android NDK
-      run: echo "y" | sudo ${ANDROID_SDK_ROOT}/cmdline-tools/latest/bin/sdkmanager --install "ndk;27.0.1207793" && echo "ANDROID_NDK_HOME=${ANDROID_SDK_ROOT}/ndk/27.0.1207793" » $GITHUB_ENV
+      run: |
+        curl -LO https://dl.google.com/android/repository/android-ndk-r27-linux.zip
+        unzip -q android-ndk-r27-linux.zip
+        sudo mv android-ndk-r27 /usr/local/lib/android/sdk/ndk/27.0.1207793
+        echo "ANDROID_NDK_HOME=/usr/local/lib/android/sdk/ndk/27.0.1207793" » $GITHUB_ENV
 
     - name: Install gomobile
       run: |
