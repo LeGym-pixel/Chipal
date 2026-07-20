@@ -22,27 +22,38 @@ jobs:
     - name: Set up Android SDK
       uses: android-actions/setup-android@v3
 
-    - name: Find project path and prepare libs
+    - name: Prepare Project and Libs
       run: |
-        # Ищем, где находится файл gradlew в репозитории
-        GRADLE_PATH=$(find . -name "gradlew" -maxdepth 4 | head -n 1)
-        if [ -z "$GRADLE_PATH" ]; then
-          echo "Error: gradlew not found!"
+        # Посмотрим структуру папок, чтобы понять, где мы находимся
+        ls -la
+        
+        # Находим папку, где лежит build.gradle или папка app
+        APP_DIR=$(find . -name "app" -type d | head -n 1)
+        if [ -z "$APP_DIR" ]; then
+          echo "Error: 'app' directory not found in repository!"
           exit 1
         fi
-        PROJECT_DIR=$(dirname "$GRADLE_PATH")
-        echo "PROJECT_DIR=$PROJECT_DIR" » $GITHUB_ENV
-        echo "Found project at: $PROJECT_DIR"
         
-        # Создаем папку libs и скачиваем туда libv2ray.aar
-        mkdir -p "$PROJECT_DIR/app/libs"
-        curl -L -o "$PROJECT_DIR/app/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
-        curl -L -o "$PROJECT_DIR/app/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
+        PROJECT_ROOT=$(dirname "$APP_DIR")
+        echo "PROJECT_ROOT=$PROJECT_ROOT"
+        
+        # Создаем папку libs и качаем либу
+        mkdir -p "$APP_DIR/libs"
+        curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
+        curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
+        
+        # Генерируем обертку gradlew, если её нет
+        cd "$PROJECT_ROOT"
+        if [ ! -f "gradlew" ]; then
+          gradle wrapper --gradle-version 8.5
+        fi
+        
+        chmod +x gradlew
+        echo "PROJECT_PATH=$PROJECT_ROOT" » $GITHUB_ENV
 
     - name: Build Debug APK
       run: |
-        cd ${{ env.PROJECT_DIR }}
-        chmod +x gradlew
+        cd ${{ env.PROJECT_PATH }}
         ./gradlew assembleDebug
 
     - name: Upload APK
