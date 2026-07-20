@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">PeladuVPN</string>
+
+    <string name="title_home">SVPN</string>
+    <string name="title_add_server">Сервер кошуу</string>
+    <string name="title_settings">Жөндөөлөр</string>
+    <string name="title_tunnel_settings">Туннелдөө жөндөөлөрү</string>
+
+    <string name="servers_header">Серверлер</string>
+    <string name="no_servers">Серверлер кошулган жок.\nАчкыч киргизүү же файл импорттоо үчүн + басыңыз.</string>
+    <string name="cd_tunnel_settings">Туннель жөндөөлөрү</string>
+    <string name="cd_delete">Өчүрүү</string>
+    <string name="btn_connect">Туташуу</string>
+    <string name="btn_disconnect">Ажыратуу</string>
+
+    <string name="field_server_name">Сервердин аты</string>
+    <string name="field_paste_key">Ачкычты же .conf мазмунун киргизиңиз</string>
+    <string name="btn_import_file">Конфигурация файлын импорттоо</string>
+    <string name="btn_cancel">Жокко чыгаруу</string>
+    <string name="btn_save">Сактоо</string>
+
+    <string name="error_title">Ката</string>
+    <string name="error_select_server_first">Адегенде серверди тандаңыз</string>
+    <string name="error_connect_failed">Туташуу мүмкүн болбоду</string>
+    <string name="error_read_file">Файлды окуу мүмкүн болбоду: %1$s</string>
+
+    <string name="settings_language">Колдонмонун тили</string>
+    <string name="settings_language_note">Тил өзгөрүшү дароо күчүнө кирет.</string>
+
+    <string name="tunnel_section_basic">Негизги</string>
+    <string name="tunnel_section_obfuscation">AmneziaWG маскировкасы</string>
+    <string name="field_mtu">MTU</string>
+    <string name="field_dns">DNS</string>
+    <string name="field_allowed_ips">Allowed IPs</string>
+    <string name="field_keepalive">Persistent Keepalive (сек)</string>
+
+    <string name="btn_news">Жаңылыктар</string>
+    <string name="warning_unofficial_config">Бул PeladuVPN\'дин расмий эмес конфигурациясы. Кадимки VPN профили катары импортталды.</string>
+
+    <string name="hex_back">артка</string>
+    <string name="hex_settings">жөндөөлөр</string>
+    <string name="hex_news">жаңылыктар</string>
+    <string name="hex_server_list">сервер\nтизмеси</string>
+    <string name="hex_save">сактоо</string>
+    <string name="enter_key_title">Ачкычты киргизиңиз</string>
+    <string name="placeholder_paste_key">Ачкычты киргизиңиз</string>
+    <string name="import_file_link">Файлды импорттоо</string>
+    <string name="error_no_server_in_list">Адегенде сервер тизмесинен серверди тандаңыз</string>
+    <string name="error_link_parse">Шилтемени талдоо катасы</string>
+    <string name="error_config_parse_generic">Конфигурацияны талдоо катасы</string>
+    <string name="notification_connected">PeladuVPN иштеп жатат.</string>
+    <string name="settings_button_design">Баскыч дизайны</string>
+    <string name="btn_select_server">Серверди тандоо</string>
+    <string name="status_disconnected">ажыратылды</string>
+    <string name="status_connecting">туташууда...</string>
+    <string name="status_almost">дагы бир аз...</string>
+    <string name="status_connected">туташты!</string>
+</resources>

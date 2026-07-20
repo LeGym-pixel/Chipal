@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">PeladuVPN</string>
+
+    <string name="title_home">SVPN</string>
+    <string name="title_add_server">Добавить сервер</string>
+    <string name="title_settings">Настройки</string>
+    <string name="title_tunnel_settings">Настройки туннелирования</string>
+
+    <string name="servers_header">Серверы</string>
+    <string name="no_servers">Нет добавленных серверов.\nНажмите +, чтобы вставить ключ или импортировать файл.</string>
+    <string name="cd_tunnel_settings">Настройки туннеля</string>
+    <string name="cd_delete">Удалить</string>
+    <string name="btn_connect">Подключить</string>
+    <string name="btn_disconnect">Отключить</string>
+
+    <string name="field_server_name">Название сервера</string>
+    <string name="field_paste_key">Вставьте ключ / содержимое .conf</string>
+    <string name="btn_import_file">Импортировать файл конфигурации</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_save">Сохранить</string>
+
+    <string name="error_title">Ошибка</string>
+    <string name="error_select_server_first">Сначала выберите сервер</string>
+    <string name="error_connect_failed">Не удалось подключиться</string>
+    <string name="error_read_file">Не удалось прочитать файл: %1$s</string>
+
+    <string name="settings_language">Язык приложения</string>
+    <string name="settings_language_note">Смена языка вступает в силу сразу.</string>
+
+    <string name="tunnel_section_basic">Основные</string>
+    <string name="tunnel_section_obfuscation">Обфускация AmneziaWG</string>
+    <string name="field_mtu">MTU</string>
+    <string name="field_dns">DNS</string>
+    <string name="field_allowed_ips">Allowed IPs</string>
+    <string name="field_keepalive">Persistent Keepalive (сек)</string>
+
+    <string name="btn_news">Новости</string>
+    <string name="warning_unofficial_config">Это неофициальная конфигурация PeladuVPN. Импортируется как обычный VPN-профиль.</string>
+
+    <string name="hex_back">назад</string>
+    <string name="hex_settings">настройки</string>
+    <string name="hex_news">новости</string>
+    <string name="hex_server_list">список\nсерверов</string>
+    <string name="hex_save">сохранить</string>
+    <string name="enter_key_title">Введите ключ</string>
+    <string name="placeholder_paste_key">Вставьте ключ</string>
+    <string name="import_file_link">Импортировать файл</string>
+    <string name="error_no_server_in_list">Сначала выберите сервер в списке серверов</string>
+    <string name="error_link_parse">Ошибка разбора ссылки</string>
+    <string name="error_config_parse_generic">Ошибка разбора конфигурации</string>
+    <string name="notification_connected">PeladuVPN работает.</string>
+    <string name="settings_button_design">Дизайн кнопки</string>
+    <string name="btn_select_server">Выбрать сервер</string>
+    <string name="status_disconnected">отключено</string>
+    <string name="status_connecting">подключение...</string>
+    <string name="status_almost">ещё немного...</string>
+    <string name="status_connected">подключено!</string>
+</resources>

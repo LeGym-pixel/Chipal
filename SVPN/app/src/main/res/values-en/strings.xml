@@ -1,0 +1,58 @@
+<resources>
+    <string name="app_name">PeladuVPN</string>
+
+    <string name="title_home">SVPN</string>
+    <string name="title_add_server">Add server</string>
+    <string name="title_settings">Settings</string>
+    <string name="title_tunnel_settings">Tunneling settings</string>
+
+    <string name="servers_header">Servers</string>
+    <string name="no_servers">No servers added yet.\nTap + to paste a key or import a file.</string>
+    <string name="cd_tunnel_settings">Tunnel settings</string>
+    <string name="cd_delete">Delete</string>
+    <string name="btn_connect">Connect</string>
+    <string name="btn_disconnect">Disconnect</string>
+
+    <string name="field_server_name">Server name</string>
+    <string name="field_paste_key">Paste key / .conf contents</string>
+    <string name="btn_import_file">Import config file</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_save">Save</string>
+
+    <string name="error_title">Error</string>
+    <string name="error_select_server_first">Select a server first</string>
+    <string name="error_connect_failed">Failed to connect</string>
+    <string name="error_read_file">Could not read file: %1$s</string>
+
+    <string name="settings_language">App language</string>
+    <string name="settings_language_note">Language change applies immediately.</string>
+
+    <string name="tunnel_section_basic">Basic</string>
+    <string name="tunnel_section_obfuscation">AmneziaWG obfuscation</string>
+    <string name="field_mtu">MTU</string>
+    <string name="field_dns">DNS</string>
+    <string name="field_allowed_ips">Allowed IPs</string>
+    <string name="field_keepalive">Persistent Keepalive (sec)</string>
+
+    <string name="btn_news">News</string>
+    <string name="warning_unofficial_config">This is not an official PeladuVPN configuration. It will be imported as a plain VPN profile.</string>
+
+    <string name="hex_back">back</string>
+    <string name="hex_settings">settings</string>
+    <string name="hex_news">news</string>
+    <string name="hex_server_list">server\nlist</string>
+    <string name="hex_save">save</string>
+    <string name="enter_key_title">Enter key</string>
+    <string name="placeholder_paste_key">Paste key</string>
+    <string name="import_file_link">Import file</string>
+    <string name="error_no_server_in_list">Select a server in the server list first</string>
+    <string name="error_link_parse">Failed to parse link</string>
+    <string name="error_config_parse_generic">Failed to parse configuration</string>
+    <string name="notification_connected">PeladuVPN is running.</string>
+    <string name="settings_button_design">Button design</string>
+    <string name="btn_select_server">Select server</string>
+    <string name="status_disconnected">disconnected</string>
+    <string name="status_connecting">connecting...</string>
+    <string name="status_almost">almost there...</string>
+    <string name="status_connected">connected!</string>
+</resources>
