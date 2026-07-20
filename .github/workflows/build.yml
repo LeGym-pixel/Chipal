@@ -28,7 +28,7 @@ jobs:
       uses: android-actions/setup-android@v3
 
     - name: Install Android NDK
-      uses: nttld/setup-ndk@v3
+      uses: nttld/setup-ndk@v2
       with:
         ndk-version: 27.0.1207793
         add-to-path: true
