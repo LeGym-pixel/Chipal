@@ -47,6 +47,7 @@ jobs:
       run: |
         git clone https://github.com/XTLS/Xray-core.git xray-source
         cd xray-source
+        go get -tool golang.org/x/mobile/cmd/gobind
         go get golang.org/x/mobile
         go mod tidy
         gomobile init
