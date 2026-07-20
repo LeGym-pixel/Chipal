@@ -24,7 +24,6 @@ jobs:
 
     - name: Prepare, Configure Gradle and Build APK
       run: |
-        # Ищем, где находится папка app
         APP_DIR=$(find . -name "app" -type d | head -n 1)
         if [ -z "$APP_DIR" ]; then
           echo "Error: 'app' directory not found in repository!"
@@ -39,26 +38,16 @@ jobs:
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
         
-        # Переходим в проект и настраиваем Gradle 8.7
+        # Переходим в проект
         cd "$PROJECT_ROOT"
-        mkdir -p gradle/wrapper
         
-        echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
-        echo "distributionPath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
-        echo "distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip" » gradle/wrapper/gradle-wrapper.properties
-        echo "networkTimeout=10000" » gradle/wrapper/gradle-wrapper.properties
-        echo "validateDistributionUrl=true" » gradle/wrapper/gradle-wrapper.properties
-        echo "zipStoreBase=GRADLE_USER_HOME" » gradle/wrapper/gradle-wrapper.properties
-        echo "zipStorePath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
-        
-        # Скачиваем скрипт gradlew, если его не было
-        if [ ! -f "gradlew" ]; then
-          curl -s https://raw.githubusercontent.com/gradle/gradle/v8.7/gradlew > gradlew
-        fi
+        # Генерируем нормальный оберточник через встроенную команду gradle, предварительно очистив старые файлы
+        rm -rf gradlew gradlew.bat gradle/
+        gradle wrapper --gradle-version 8.7 --distribution-type bin
         
         chmod +x gradlew
         
-        # Сразу запускаем сборку из этой же папки
+        # Запускаем сборку
         ./gradlew assembleDebug --no-daemon
 
     - name: Upload APK
