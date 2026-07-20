@@ -38,21 +38,19 @@ jobs:
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/v2rayA/v2rayA-core/releases/latest/download/libv2ray.aar || \
         curl -L -o "$APP_DIR/libs/libv2ray.aar" https://github.com/XTLS/Xray-core/releases/latest/download/libv2ray.aar
         
-        # Переходим в проект и принудительно создаем правильный gradle-wrapper для версии 8.7
+        # Переходим в проект и настраиваем gradle-wrapper через echo
         cd "$PROJECT_ROOT"
         mkdir -p gradle/wrapper
         
-        cat «EOF > gradle/wrapper/gradle-wrapper.properties
-        distributionBase=GRADLE_USER_HOME
-        distributionPath=wrapper/dists
-        distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip
-        networkTimeout=10000
-        validateDistributionUrl=true
-        zipStoreBase=GRADLE_USER_HOME
-        zipStorePath=wrapper/dists
-        EOF
+        echo "distributionBase=GRADLE_USER_HOME" > gradle/wrapper/gradle-wrapper.properties
+        echo "distributionPath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
+        echo "distributionUrl=https\://services.gradle.org/distributions/gradle-8.7-bin.zip" » gradle/wrapper/gradle-wrapper.properties
+        echo "networkTimeout=10000" » gradle/wrapper/gradle-wrapper.properties
+        echo "validateDistributionUrl=true" » gradle/wrapper/gradle-wrapper.properties
+        echo "zipStoreBase=GRADLE_USER_HOME" » gradle/wrapper/gradle-wrapper.properties
+        echo "zipStorePath=wrapper/dists" » gradle/wrapper/gradle-wrapper.properties
         
-        # Скачиваем сам скрипт gradlew, если его не было
+        # Скачиваем скрипт gradlew, если его не было
         if [ ! -f "gradlew" ]; then
           curl -s https://raw.githubusercontent.com/gradle/gradle/v8.7/gradlew > gradlew
         fi
